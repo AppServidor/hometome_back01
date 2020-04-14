@@ -46,6 +46,7 @@ class __TwigTemplate_9639cdabd93d58b7f130a1076ede5d6f9ea5ef0754d4ece1f75ff1f5b64
         <a href=\"/user\">Usuario</a>
         <a href=\"/ciudad\">Ciudad</a>
         <a href=\"/preferencias\">Preferencias</a>
+        <a href=\"/foto\">Foto</a>
         <a href=\"/registerAdmin\">Crear nuevo admin</a>
         <a href=\"/logout\">Logout</a>
     <hr/>
@@ -76,9 +77,10 @@ class __TwigTemplate_9639cdabd93d58b7f130a1076ede5d6f9ea5ef0754d4ece1f75ff1f5b64
         <a href=\"/user\">Usuario</a>
         <a href=\"/ciudad\">Ciudad</a>
         <a href=\"/preferencias\">Preferencias</a>
+        <a href=\"/foto\">Foto</a>
         <a href=\"/registerAdmin\">Crear nuevo admin</a>
         <a href=\"/logout\">Logout</a>
     <hr/>
-", "navAdmin.html.twig", "/home/antonio/proyectoFinal/hometome/templates/navAdmin.html.twig");
+", "navAdmin.html.twig", "/home/antonio/proyectoFinal/hometome_back01/templates/navAdmin.html.twig");
     }
 }

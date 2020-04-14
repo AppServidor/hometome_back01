@@ -15,7 +15,12 @@ return [
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
         '/ciudad' => [[['_route' => 'ciudad_index', '_controller' => 'App\\Controller\\CiudadController::index'], null, ['GET' => 0], null, true, false, null]],
         '/ciudad/new' => [[['_route' => 'ciudad_new', '_controller' => 'App\\Controller\\CiudadController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        '/' => [[['_route' => 'home_index', '_controller' => 'App\\Controller\\HomeController::index'], null, null, null, false, false, null]],
+        '/foto' => [[['_route' => 'foto_index', '_controller' => 'App\\Controller\\FotoController::index'], null, ['GET' => 0], null, true, false, null]],
+        '/foto/new' => [[['_route' => 'foto_new', '_controller' => 'App\\Controller\\FotoController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/' => [
+            [['_route' => 'home_index', '_controller' => 'App\\Controller\\HomeController::index'], null, null, null, false, false, null],
+            [['_route' => 'index', '_controller' => 'App\\Controller\\HomeController::index'], null, null, null, false, false, null],
+        ],
         '/home' => [[['_route' => 'home_user', '_controller' => 'App\\Controller\\HomeController::home_user'], null, null, null, false, false, null]],
         '/home/perfil' => [[['_route' => 'perfil_show', '_controller' => 'App\\Controller\\HomeController::show'], null, ['GET' => 0], null, false, false, null]],
         '/home/perfil/editar' => [[['_route' => 'perfil_user', '_controller' => 'App\\Controller\\HomeController::perfil_user'], null, null, null, false, false, null]],
@@ -43,35 +48,49 @@ return [
                     .'|/edit(*:201)'
                     .'|(*:209)'
                 .')'
-                .'|/([^/]++)(*:227)'
-                .'|/foto/([^/]++)(*:249)'
-                .'|/preferencias(?'
-                    .'|(*:273)'
-                    .'|/([^/]++)(?'
-                        .'|(*:293)'
-                        .'|/edit(*:306)'
-                        .'|(*:314)'
+                .'|/foto/([^/]++)(?'
+                    .'|(*:235)'
+                    .'|/edit(*:248)'
+                    .'|(*:256)'
+                .')'
+                .'|/([^/]++)(*:274)'
+                .'|/p(?'
+                    .'|icUser/([^/]++)(*:302)'
+                    .'|referencias(?'
+                        .'|(*:324)'
+                        .'|/([^/]++)(?'
+                            .'|(*:344)'
+                            .'|/edit(*:357)'
+                            .'|(*:365)'
+                        .')'
+                        .'|(*:374)'
                     .')'
                 .')'
                 .'|/register(?'
-                    .'|(*:336)'
-                    .'|Admin(*:349)'
+                    .'|(*:396)'
+                    .'|Admin(?'
+                        .'|(*:412)'
+                    .')'
+                    .'|(*:421)'
                 .')'
                 .'|/log(?'
-                    .'|in(*:367)'
-                    .'|out(*:378)'
+                    .'|in(*:439)'
+                    .'|out(*:450)'
                 .')'
                 .'|/user(?'
-                    .'|(*:395)'
+                    .'|(*:467)'
                     .'|/(?'
                         .'|([^/]++)(?'
-                            .'|(*:418)'
-                            .'|/edit(*:431)'
-                            .'|(*:439)'
+                            .'|(*:490)'
+                            .'|/edit(*:503)'
+                            .'|(*:511)'
                         .')'
-                        .'|foto/([^/]++)(*:461)'
+                        .'|foto/([^/]++)(*:533)'
                     .')'
+                    .'|(*:542)'
                 .')'
+                .'|/ciudad(*:558)'
+                .'|/foto(*:571)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -85,22 +104,33 @@ return [
         188 => [[['_route' => 'ciudad_show', '_controller' => 'App\\Controller\\CiudadController::show'], ['id'], ['GET' => 0], null, false, true, null]],
         201 => [[['_route' => 'ciudad_edit', '_controller' => 'App\\Controller\\CiudadController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
         209 => [[['_route' => 'ciudad_delete', '_controller' => 'App\\Controller\\CiudadController::delete'], ['id'], ['DELETE' => 0], null, false, true, null]],
-        227 => [[['_route' => 'perfil_delete', '_controller' => 'App\\Controller\\HomeController::delete'], ['id'], ['DELETE' => 0], null, false, true, null]],
-        249 => [[['_route' => 'perfilPic_delete', '_controller' => 'App\\Controller\\HomeController::deletePicture'], ['id'], ['DELETE' => 0], null, false, true, null]],
-        273 => [[['_route' => 'preferencias_index', '_controller' => 'App\\Controller\\PreferenciasController::index'], [], ['GET' => 0], null, true, false, null]],
-        293 => [[['_route' => 'preferencias_show', '_controller' => 'App\\Controller\\PreferenciasController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        306 => [[['_route' => 'preferencias_edit', '_controller' => 'App\\Controller\\PreferenciasController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        314 => [[['_route' => 'preferencias_delete', '_controller' => 'App\\Controller\\PreferenciasController::delete'], ['id'], ['DELETE' => 0], null, false, true, null]],
-        336 => [[['_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'], [], null, null, false, false, null]],
-        349 => [[['_route' => 'register_admin', '_controller' => 'App\\Controller\\RegistrationController::registerAdmin'], [], null, null, false, false, null]],
-        367 => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], [], null, null, false, false, null]],
-        378 => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], [], ['GET' => 0], null, false, false, null]],
-        395 => [[['_route' => 'user_index', '_controller' => 'App\\Controller\\UserController::index'], [], ['GET' => 0], null, true, false, null]],
-        418 => [[['_route' => 'user_show', '_controller' => 'App\\Controller\\UserController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        431 => [[['_route' => 'user_edit', '_controller' => 'App\\Controller\\UserController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        439 => [[['_route' => 'user_delete', '_controller' => 'App\\Controller\\UserController::delete'], ['id'], ['DELETE' => 0], null, false, true, null]],
-        461 => [
-            [['_route' => 'pic_delete', '_controller' => 'App\\Controller\\UserController::deletePicture'], ['id'], ['DELETE' => 0], null, false, true, null],
+        235 => [[['_route' => 'foto_show', '_controller' => 'App\\Controller\\FotoController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        248 => [[['_route' => 'foto_edit', '_controller' => 'App\\Controller\\FotoController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        256 => [[['_route' => 'foto_delete', '_controller' => 'App\\Controller\\FotoController::delete'], ['id'], ['DELETE' => 0], null, false, true, null]],
+        274 => [[['_route' => 'perfil_delete', '_controller' => 'App\\Controller\\HomeController::delete'], ['id'], ['DELETE' => 0], null, false, true, null]],
+        302 => [[['_route' => 'perfilPic_delete', '_controller' => 'App\\Controller\\HomeController::deletePicture'], ['id'], ['DELETE' => 0], null, false, true, null]],
+        324 => [[['_route' => 'preferencias_index', '_controller' => 'App\\Controller\\PreferenciasController::index'], [], ['GET' => 0], null, true, false, null]],
+        344 => [[['_route' => 'preferencias_show', '_controller' => 'App\\Controller\\PreferenciasController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        357 => [[['_route' => 'preferencias_edit', '_controller' => 'App\\Controller\\PreferenciasController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        365 => [[['_route' => 'preferencias_delete', '_controller' => 'App\\Controller\\PreferenciasController::delete'], ['id'], ['DELETE' => 0], null, false, true, null]],
+        374 => [[['_route' => 'preferencias', '_controller' => 'App\\Controller\\PreferenciasController::index'], [], null, null, false, false, null]],
+        396 => [[['_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'], [], null, null, false, false, null]],
+        412 => [
+            [['_route' => 'register_admin', '_controller' => 'App\\Controller\\RegistrationController::registerAdmin'], [], null, null, false, false, null],
+            [['_route' => 'registro_admin', '_controller' => 'App\\Controller\\RegistrationController::registerAdmin'], [], null, null, false, false, null],
+        ],
+        421 => [[['_route' => 'registro_usuarios', '_controller' => 'App\\Controller\\RegistrationController::register'], [], null, null, false, false, null]],
+        439 => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], [], null, null, false, false, null]],
+        450 => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], [], ['GET' => 0], null, false, false, null]],
+        467 => [[['_route' => 'user_index', '_controller' => 'App\\Controller\\UserController::index'], [], ['GET' => 0], null, true, false, null]],
+        490 => [[['_route' => 'user_show', '_controller' => 'App\\Controller\\UserController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        503 => [[['_route' => 'user_edit', '_controller' => 'App\\Controller\\UserController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        511 => [[['_route' => 'user_delete', '_controller' => 'App\\Controller\\UserController::delete'], ['id'], ['DELETE' => 0], null, false, true, null]],
+        533 => [[['_route' => 'pic_delete', '_controller' => 'App\\Controller\\UserController::deletePicture'], ['id'], ['DELETE' => 0], null, false, true, null]],
+        542 => [[['_route' => 'user', '_controller' => 'App\\Controller\\UserController::index'], [], null, null, false, false, null]],
+        558 => [[['_route' => 'ciudad', '_controller' => 'App\\Controller\\PreferenciasController::index'], [], null, null, false, false, null]],
+        571 => [
+            [['_route' => 'foto', '_controller' => 'App\\Controller\\FotoController::index'], [], null, null, false, false, null],
             [null, null, null, null, false, false, 0],
         ],
     ],
