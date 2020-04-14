@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Preferencias{% endblock %}
+
+{% block body %}
+{% include 'navAdmin.html.twig' %}
+    <h1>Preferencias</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for preferencia in preferencias %}
+            <tr>
+                <td>{{ preferencia.id }}</td>
+                <td>{{ preferencia.nombre }}</td>
+                <td>
+                    <a href="{{ path('preferencias_show', {'id': preferencia.id}) }}">Mostrar</a>
+                    <a href="{{ path('preferencias_edit', {'id': preferencia.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">No hay registros</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('preferencias_new') }}">Crear nueva</a>
+{% endblock %}

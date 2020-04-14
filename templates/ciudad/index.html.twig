@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ciudades{% endblock %}
+
+{% block body %}
+{% include 'navAdmin.html.twig' %}
+    <h1>Ciudades</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ciudad in ciudads %}
+            <tr>
+                <td>{{ ciudad.id }}</td>
+                <td>{{ ciudad.nombre }}</td>
+                <td>
+                    <a href="{{ path('ciudad_show', {'id': ciudad.id}) }}">Mostrar</a>
+                    <a href="{{ path('ciudad_edit', {'id': ciudad.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">No hay registros</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ciudad_new') }}">Crear nueva</a>
+{% endblock %}

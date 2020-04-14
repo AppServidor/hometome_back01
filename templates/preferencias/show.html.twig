@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Preferencias{% endblock %}
+
+{% block body %}
+{% include 'navAdmin.html.twig' %}
+    <h1>Preferencias</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ preferencia.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ preferencia.nombre }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('preferencias_index') }}">Volver al listado</a>
+
+    <a href="{{ path('preferencias_edit', {'id': preferencia.id}) }}">Editar</a>
+
+    {{ include('preferencias/_delete_form.html.twig') }}
+{% endblock %}
